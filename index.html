@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: blue;
+            overflow-x: scroll;
+            white-space: nowrap;
+            margin: 0;
+            padding: 0;
+        }
+        .movie {
+            display: inline-block;
+            width: 200px;
+            height: 250px;
+            margin: 10px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .movie img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .movie-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="movie" data-url="https://drive.google.com/file/d/1SN5RE9ydgSxMs08IqtlLO95INGoRCcAE/preview">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp-mTSl9O_7gPNWdmtXwunF8nY0SqUtHnMhw&s" alt="Movie 1">
+        <div class="movie-title">Inside Out 2</div>
+    </div>
+    <div class="movie" data-url="https://drive.google.com/file/d/1WEIj-v752Qi7YLMvQQsr8e4776bJ2bY0/preview">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWkIFjit5xqUjAduYF8O_yvAY0wtOTr0DXEg&s" alt="Movie 2">
+        <div class="movie-title">Godzilla - King of the monsters</div>
+    </div>
+    <div class="movie" data-url="https://drive.google.com/file/d/13YPdlfR1BTzXfqwmfbzfiuPycjQsh0Yb/preview">
+        <img src="https://upload.wikimedia.org/wikipedia/en/3/3e/Sonic_the_Hedgehog_2_film_poster.jpg" alt="Movie 3">
+        <div class="movie-title">Sonic 2</div>
+    </div>
+    <div class="movie" data-url="https://drive.google.com/file/d/115NMznT9rm8LGZzRzE0OvgqCbP-_y-Ia/preview">
+        <img src="https://dci832c741skk.cloudfront.net/assets/files/52099/ghostbusters-frozen-empire.800x600.jpg" alt="Ghostbusters: Frozen Empire - Wikipedia"/>" alt="Movie 4">
+        <div class="movie-title">Ghostbusters Frozen Empire</div>
+    </div>
+    <!-- Add more movie divs with different URLs and titles -->
+    <script>
+        // Set the background image URL
+        var bgImageUrl = 'https://i.ibb.co/8m034vV/FLIX-5.png';
+        document.body.style.backgroundImage = 'url(' + bgImageUrl + ')';
+        document.body.style.backgroundSize = 'cover';
+
+        // Function to open movies in fullscreen mode
+        function openMovie(url) {
+            const iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.id = 'movieFrame';
+            iframe.frameBorder = 0;
+            iframe.scrolling = 'no';
+            iframe.style.width = '100vw';
+            iframe.style.height = '100vh';
+            iframe.style.position = 'fixed';
+            iframe.style.top = 0;
+            iframe.style.left = 0;
+            iframe.style.zIndex = 1000;
+
+            document.body.appendChild(iframe);
+            iframe.requestFullscreen();
+        }
+
+        // Event listener for clicking on movie thumbnails
+        const movieThumbnails = document.querySelectorAll('.movie');
+        movieThumbnails.forEach((thumbnail) => {
+            thumbnail.addEventListener('click', () => {
+                const movieUrl = thumbnail.getAttribute('data-url');
+                openMovie(movieUrl);
+            });
+        });
+    </script>
+</body>
+</html>
